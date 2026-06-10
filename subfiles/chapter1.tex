@@ -26,7 +26,22 @@
       \label{table:someTable}
       \end{table}
 
+        The above does not meet PDF accessibility standards, but below is an identical table that does.
+      \begin{table}[ht]
+        \centering
 
+      \begin{tblr}[c]{
+        colspec = {|l|c|rc|},
+        width = \textwidth,
+        hline{1,2,Z} = {0.7pt}
+      }
+        left justified  & centerd  & right justified  & no left border\\
+        row 1 & fill & in between & the \&s\\
+        row 2 & & &\\
+      \end{tblr}
+      \caption{The Caption of the table.}
+      \label{table:someTable2}
+      \end{table}
 
       \subsection{Figure Example}
       This is going to be an example of how to insert an image and it's caption. We can also reference it anywhere else in the document as well.
@@ -43,7 +58,6 @@
             Y=\beta_{0} + \sum\limits_{i=1}^n \beta_{i}X_{i} + e
           \end{equation*}
         The equation for the general multiple linear regression model is above. This is a good use case for the equation enviornment. \LaTeX  knows to expect math symbols inside the enviornment. What if you need more than one line? What if each line need to align? Thats when the align enviornment comes in handy. A lot of the times, you will need to show the simplification of equations or steps in calcualtions.
-          \begin{center}
             \begin{align*}
               P_{s} &= \frac{D*F}{N*P*I}\\
                             \\
@@ -55,6 +69,58 @@
              \\
              A=\frac{R*0.1}{4096} &\implies A = 1835007.99
            \end{align*}
-         \end{center}
+        
+      \subsection{Algorithm Examples}
+        Algorithms are another common inclusion to documents. Below are two examples of the same algorithm. The first example utilizes the "algorithm" package and is more commonly used. 
+          \begin{algorithm}
+          \caption{Algorithm Title}
+          \label{alg:example}
+          \textbf{Inputs}: First input $I_1$, Second input $I_2$
+          \newline
+          \textbf{Output}: Output $O$
+          \begin{algorithmic}[1]
+          \State Initialize function $I_1$
+          \State Initialize empty list $O$
+          \For{$i = 0$ to $I_2$}
+              \State Pass current index through function: $o = I_1(i)$
+              \State Add current output to running list: $O \gets O \cup o$
+          \EndFor
+          \State \Return $O$
+          \end{algorithmic}
+          \end{algorithm}
+
+        The second example illustrates the same algorithm, but is a custom, identical template. Although this is more complicated, the second example meets PDF accessibility standards.
+
+          \begin{flushleft}
+          \begin{minipage}{\textwidth}
+          \singlespacing
+          \refstepcounter{algorithm}
+          \tagmcbegin{artifact}
+          \hrule height 0.8pt
+          \vspace{2pt}
+          \tagmcend{}
+          \noindent\textbf{Algorithm \thealgorithm} Algorithm Title \\[-9pt]
+          \rule{\textwidth}{0.4pt}\\[-4pt]
+          \label{alg:exampleforaccessibility}
+          \noindent\textbf{Inputs}: First input $I_1$, Second input $I_2$
+          \newline
+          \noindent\textbf{Output}: Output $O$
+          \begin{algorithmic}[1]
+          \State Initialize function $I_1$
+          \State Initialize empty list $O$
+          \For{$i = 0$ to $I_2$}
+              \State Pass current index through function: $o = I_1(i)$
+              \State Add current output to running list: $O \gets O \cup o$
+          \EndFor
+          \State \Return $O$
+          \end{algorithmic}
+          \tagmcbegin{artifact}
+          \vspace{2pt}
+          \hrule
+          \tagmcend{}
+          \end{minipage}
+          \end{flushleft}
+        
+        Like tables, figures, and equations, algorithms can be referenced in the text with the following: Algorithm ~\ref{alg:example} and Algorithm ~\ref{alg:exampleforaccessibility}.
 
 \end{document}

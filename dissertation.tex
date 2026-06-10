@@ -3,6 +3,15 @@
 % arara: pdflatex
 % arara: pdflatex
 
+% The following enables tagging for the PDF, remove if you do not care about PDF accessibility
+\DocumentMetadata{
+  tagging=on,
+  tagging-setup={math/setup=mathml-SE},
+  pdfstandard=UA-1,
+  pdfversion=1.7,
+  lang=en-US
+}
+
 \documentclass[12pt, notitlepage, twoside]{report}
 
 % Document Metafiles (Do Not Reorder!) ===================================== %
@@ -13,7 +22,7 @@
 
 % Document Structure Options =============================================== %
 \sidenotetrue
-%\sidenotefalse
+% \sidenotefalse
 \figurestrue
 % \figuresfalse
 \tablestrue
@@ -29,6 +38,15 @@
 % Title and Author Settings ================================================ %
 \newcommand{\doctitle}{Your Dissertation Title Will Go Here}
 \newcommand{\docauthor}{Your Name Goes Here}
+
+% Set title and author meta data for PDF accessibility and set border colors after being muted by 'DocumentMetadata'
+\hypersetup{
+  pdftitle={\doctitle},
+  pdfauthor={\docauthor},
+  linkbordercolor=red,
+  citebordercolor=green,
+  urlbordercolor=blue
+}
 
 
 %--------------------------ABSTRACT---------------------------%
